@@ -395,13 +395,11 @@ header {
       cite {
         display: flex;
         margin-top: 25px;
-        p {
-          align-self: center;
-          margin-left: 10px;
-        }
+        align-items: center;
         img {
           width: 50px;
           border-radius: 50%;
+          margin-right: 10px;
         }
       }
     }
