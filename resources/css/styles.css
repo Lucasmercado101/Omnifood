@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 *,
 html,
 body {
@@ -8,6 +12,49 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+.container {
+  cursor: pointer;
+  float: right;
+  padding-right: 25px;
+  padding-top: 25px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: silver;
+  margin: 6px 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change {
+  /* Fade out the second bar */
+  /* Rotate last bar */
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+          transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+          transform: rotate(45deg) translate(-8px, -8px);
+}
+
+html,
+body {
+  width: 100%;
 }
 
 .btn {
@@ -78,8 +125,8 @@ section:not(#favorite-meals) {
 }
 
 header {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url("resources/img/hero.jpg");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("resources/img/hero.jpg");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url("../img/hero.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../img/hero.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -87,8 +134,33 @@ header {
 }
 
 header nav {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   height: 140px;
   text-transform: uppercase;
+}
+
+header nav.fixed-top {
+  z-index: 100;
+  position: fixed;
+  width: 100vw;
+  background: #eeeeee;
+  height: 70px;
+  overflow: visible;
+}
+
+header nav.fixed-top #logo {
+  margin-top: 8px;
+  width: 55px;
+  height: 55px;
+}
+
+header nav.fixed-top ul {
+  margin-top: 22px;
+}
+
+header nav.fixed-top ul li a {
+  color: black;
 }
 
 header nav #logo {
@@ -247,11 +319,16 @@ header #hero-text-box .btn:first-of-type {
 
 #how-it-works #steps-flex #phone {
   width: 80%;
+  height: 440px;
   text-align: right;
   padding-right: 120px;
+  overflow-y: hidden;
 }
 
 #how-it-works #steps-flex #phone img {
+  opacity: 0;
+  position: relative;
+  top: 450px;
   height: 440px;
 }
 
@@ -338,8 +415,8 @@ header #hero-text-box .btn:first-of-type {
 }
 
 #testimonials {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))), url("resources/img/back-customers.jpg");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("resources/img/back-customers.jpg");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))), url("../img/back-customers.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../img/back-customers.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -414,6 +491,18 @@ header #hero-text-box .btn:first-of-type {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  overflow: visible;
+}
+
+#plans #all-plans #premium {
+  position: relative;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+#plans #all-plans .premium-beat {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 #plans #all-plans .plan-box {
@@ -458,6 +547,7 @@ header #hero-text-box .btn:first-of-type {
 }
 
 #plans #all-plans .plan-box ul {
+  list-style: none;
   background-color: white;
   padding: 20px 0;
   border-bottom: 2px solid #f8f8f8;
@@ -665,10 +755,6 @@ footer p {
   footer * {
     font-size: 1rem;
   }
-  body:after {
-    content: "tablet-landscape";
-    display: none;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -691,14 +777,57 @@ footer p {
   h2:after {
     margin-top: 15px;
   }
-  body:after {
-    content: "mobile-portrait";
-    display: none;
+  header nav.fixed-top {
+    height: 5rem;
+  }
+  header nav.fixed-top #logo {
+    margin-top: 8px;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  header nav.fixed-top ul li a {
+    color: black;
+  }
+  header nav.fixed-top .container {
+    float: right;
+    padding-top: 0.4rem;
+    padding-right: 1rem;
+    height: 100%;
+    overflow: visible;
+  }
+  header nav.fixed-top .bar1,
+  header nav.fixed-top .bar2,
+  header nav.fixed-top .bar3 {
+    background-color: black;
+    height: 5px;
   }
   header nav #logo {
     height: 70px;
   }
   header nav ul {
+    background-color: #eeeeee;
+    display: none;
+    float: right;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    margin-top: 5px;
+    margin-left: 25px;
+  }
+  header nav ul li + li {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  header nav ul li {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 3.5rem;
+  }
+  header nav ul li a {
+    font-size: 1.4rem;
+  }
+  header nav ul li a::after {
     display: none;
   }
   header #hero-text-box h1 {
@@ -742,11 +871,19 @@ footer p {
             flex-direction: column;
   }
   #how-it-works #steps-flex #phone {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-left: 50px;
   }
   #how-it-works #steps-flex li {
     font-size: 1.4rem;
+    margin-top: 25px;
   }
   #how-it-works #steps-flex #download-links {
     margin-top: 35px;
@@ -813,20 +950,20 @@ footer p {
     font-size: 1.3rem;
   }
   #cities #flexbox-cards .card:nth-child(1) {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("resources/img/lisbon-3.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("resources/img/lisbon-3.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("../img/lisbon-3.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/lisbon-3.jpg");
   }
   #cities #flexbox-cards .card:nth-child(2) {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("resources/img/san-francisco.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("resources/img/san-francisco.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("../img/san-francisco.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/san-francisco.jpg");
   }
   #cities #flexbox-cards .card:nth-child(3) {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("resources/img/berlin.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("resources/img/berlin.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("../img/berlin.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/berlin.jpg");
   }
   #cities #flexbox-cards .card:nth-child(4) {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("resources/img/london.jpg");
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("resources/img/london.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("../img/london.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/london.jpg");
   }
   #testimonials #quotes {
     -webkit-box-orient: vertical;
@@ -909,55 +1046,129 @@ footer p {
   footer p {
     font-size: 1.3rem;
   }
-  /*footer {
-  background-color: #333;
-  display: flex;
-  flex-direction: column;
-  padding: 70px 0;
-  * {
-    color: #888;
-    font-size: 0.8rem;
-    font-weight: 300;
-  }
-  #info {
-    ul {
-      display: flex;
-    }
-    * + li {
-      margin-left: 20px;
-    }
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    a,
-    ion-icon {
-      transition: all 0.2s;
-    }
-    #about-us {
-      margin-left: 65px;
-      a {
-        text-decoration: none;
-        &:hover,
-        &:active {
-          color: white;
-        }
-      }
-    }
-    #social-media {
-      margin-right: 65px;
-    }
-  }
-  p {
-    margin-top: 55px;
-    align-self: center;
-  }
-}*/
 }
 
 @media only screen and (max-width: 480px) {
-  body:after {
-    content: "mobile-portrait";
-    display: none;
+  html {
+    font-size: 10px;
+  }
+  .btn {
+    padding: 8px 13px;
+  }
+  header nav #logo {
+    width: 50px;
+    height: auto;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  h2::after {
+    width: 60px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  #features #feature-intro {
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    line-height: 18px;
+  }
+  #features #features-list li {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #how-it-works h2 {
+    font-size: 1.45rem;
+  }
+  #how-it-works #steps-flex #phone {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-left: 25px;
+  }
+  #how-it-works #steps-flex li {
+    margin-top: 25px;
+  }
+  #how-it-works #steps-flex #download-links img {
+    width: 130px;
+  }
+  #cities #flexbox-cards .card ul li,
+  #cities #flexbox-cards .card ul ion-icon,
+  #cities #flexbox-cards .card ul a {
+    font-size: 1rem;
+  }
+  #cities #flexbox-cards .card ul ion-icon {
+    margin-right: 3px;
+  }
+  #testimonials #quotes blockquote {
+    width: 95%;
+    margin: 0 auto;
+  }
+  #testimonials #quotes blockquote cite img {
+    width: 45px;
+  }
+  #plans #all-plans .plan-box .first .plan-price {
+    font-size: 4rem;
+    font-weight: 200;
+  }
+  footer #info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  footer #info #about-us {
+    margin-bottom: 25px;
+  }
+  footer #info #about-us li a {
+    font-size: 1.2rem;
+  }
+  footer #info #social-media li ion-icon {
+    font-size: 1.8rem;
+  }
+  footer p {
+    margin-top: 45px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 8px;
+  }
+  #how-it-works #steps-flex #phone {
+    margin-right: 0;
+  }
+  #how-it-works #steps-flex #phone img {
+    height: 250px;
+  }
+  #how-it-works #steps-flex #download-links img {
+    width: 40vw;
+  }
+  #cities #flexbox-cards .card h3 {
+    font-size: 2.2rem;
+  }
+  #cities #flexbox-cards .card ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+  #cities #flexbox-cards .card ul li,
+  #cities #flexbox-cards .card ul a,
+  #cities #flexbox-cards .card ul ion-icon {
+    font-size: 1.5rem;
+  }
+  #contact-us form #submit {
+    width: 35%;
+    font-size: 1.3rem;
+    padding-left: 20px;
   }
 }
 /*# sourceMappingURL=styles.css.map */

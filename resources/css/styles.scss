@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *,
 html,
 body {
@@ -12,6 +16,46 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+//  Hamburger menu  //
+.container {
+  cursor: pointer;
+  float: right;
+  padding-right: 25px;
+  padding-top: 25px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: rgb(192, 192, 192);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change {
+  .bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  /* Fade out the second bar */
+  .bar2 {
+    opacity: 0;
+  }
+  /* Rotate last bar */
+  .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+}
+
+//-----------------//@include
+
+html,
+body {
+  width: 100%;
 }
 
 .btn {
@@ -92,13 +136,37 @@ section:not(#favorite-meals) {
 
 header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("resources/img/hero.jpg");
+    url("../img/hero.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   height: 100vh;
 
   nav {
+    transition: all 0.3s;
+    &.fixed-top {
+      z-index: 100;
+      position: fixed;
+      width: 100vw;
+      background: rgb(238, 238, 238);
+      height: 70px;
+      overflow: visible;
+      #logo {
+        margin-top: 8px;
+        width: 55px;
+        height: 55px;
+      }
+
+      ul {
+        margin-top: 22px;
+        li {
+          a {
+            color: black;
+          }
+        }
+      }
+    }
+
     height: 140px;
     text-transform: uppercase;
     #logo {
@@ -217,9 +285,14 @@ header {
     display: flex;
     #phone {
       width: 80%;
+      height: 440px;
       text-align: right;
       padding-right: 120px;
+      overflow-y: hidden;
       img {
+        opacity: 0;
+        position: relative;
+        top: 450px;
         height: 440px;
       }
     }
@@ -293,7 +366,7 @@ header {
 
 #testimonials {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url("resources/img/back-customers.jpg");
+    url("../img/back-customers.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -341,6 +414,16 @@ header {
   #all-plans {
     display: flex;
     justify-content: space-evenly;
+    overflow: visible;
+
+    #premium {
+      position: relative;
+      transition: all 0.35s;
+    }
+
+    .premium-beat {
+      transform: scale(1.1);
+    }
 
     .plan-box {
       display: flex;
@@ -375,6 +458,7 @@ header {
       }
 
       ul {
+        list-style: none;
         background-color: white;
         padding: 20px 0;
         border-bottom: 2px solid rgb(248, 248, 248);
@@ -586,11 +670,6 @@ footer {
       font-size: 1rem;
     }
   }
-
-  body:after {
-    content: "tablet-landscape";
-    display: none;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -615,18 +694,64 @@ footer {
     }
   }
 
-  body:after {
-    content: "mobile-portrait";
-    display: none;
-  }
-
   header {
     nav {
+      &.fixed-top {
+        height: 5rem;
+        #logo {
+          margin-top: 8px;
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+
+        ul {
+          li {
+            a {
+              color: black;
+            }
+          }
+        }
+
+        .container {
+          float: right;
+          padding-top: 0.4rem;
+          padding-right: 1rem;
+          height: 100%;
+          overflow: visible;
+        }
+        .bar1,
+        .bar2,
+        .bar3 {
+          background-color: black;
+          height: 5px;
+        }
+      }
       #logo {
         height: 70px;
       }
       ul {
+        background-color: rgb(238, 238, 238);
         display: none;
+        float: right;
+        flex-flow: column;
+        margin-top: 5px;
+        margin-left: 25px;
+        li + li {
+          margin-left: 0;
+          margin-top: 5px;
+        }
+
+        li {
+          padding-left: 10px;
+          padding-right: 10px;
+          height: 3.5rem;
+          a {
+            font-size: 1.4rem;
+            &::after {
+              display: none;
+            }
+          }
+        }
       }
     }
     #hero-text-box {
@@ -673,10 +798,14 @@ footer {
     #steps-flex {
       flex-direction: column;
       #phone {
-        @include width-center(50%);
+        @include width-center(90%);
+        display: flex;
+        justify-content: center;
+        margin-left: 50px;
       }
       li {
         font-size: 1.4rem;
+        margin-top: 25px;
       }
       #download-links {
         margin-top: 35px;
@@ -732,10 +861,10 @@ footer {
         }
 
         $cities: (
-          "1": "resources/img/lisbon-3.jpg",
-          "2": "resources/img/san-francisco.jpg",
-          "3": "resources/img/berlin.jpg",
-          "4": "resources/img/london.jpg",
+          "1": "../img/lisbon-3.jpg",
+          "2": "../img/san-francisco.jpg",
+          "3": "../img/berlin.jpg",
+          "4": "../img/london.jpg",
         );
 
         @each $num, $city in $cities {
@@ -831,55 +960,184 @@ footer {
       font-size: 1.3rem;
     }
   }
-
-  /*footer {
-  background-color: #333;
-  display: flex;
-  flex-direction: column;
-  padding: 70px 0;
-  * {
-    color: #888;
-    font-size: 0.8rem;
-    font-weight: 300;
-  }
-  #info {
-    ul {
-      display: flex;
-    }
-    * + li {
-      margin-left: 20px;
-    }
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    a,
-    ion-icon {
-      transition: all 0.2s;
-    }
-    #about-us {
-      margin-left: 65px;
-      a {
-        text-decoration: none;
-        &:hover,
-        &:active {
-          color: white;
-        }
-      }
-    }
-    #social-media {
-      margin-right: 65px;
-    }
-  }
-  p {
-    margin-top: 55px;
-    align-self: center;
-  }
-}*/
 }
 
 @media only screen and (max-width: 480px) {
-  body:after {
-    content: "mobile-portrait";
-    display: none;
+  html {
+    font-size: 10px;
+  }
+
+  .btn {
+    padding: 8px 13px;
+  }
+
+  header {
+    nav {
+      #logo {
+        width: 50px;
+        height: auto;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    &::after {
+      @include width-center(60px);
+      margin-top: 15px;
+    }
+  }
+
+  #features {
+    #feature-intro {
+      font-size: 1rem;
+      margin-top: 15px;
+      margin-bottom: 0px;
+      line-height: 18px;
+    }
+    #features-list {
+      li {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  #how-it-works {
+    h2 {
+      font-size: 1.45rem;
+    }
+    #steps-flex {
+      #phone {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-left: 25px;
+      }
+      li {
+        margin-top: 25px;
+      }
+      #download-links {
+        img {
+          width: 130px;
+        }
+      }
+    }
+  }
+
+  #cities {
+    #flexbox-cards {
+      .card {
+        ul {
+          li,
+          ion-icon,
+          a {
+            font-size: 1rem;
+          }
+          ion-icon {
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  #testimonials {
+    #quotes {
+      blockquote {
+        @include width-center(95%);
+        cite {
+          img {
+            width: 45px;
+          }
+        }
+      }
+    }
+  }
+
+  #plans {
+    #all-plans {
+      .plan-box {
+        .first {
+          .plan-price {
+            font-size: 4rem;
+            font-weight: 200;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    #info {
+      flex-direction: column;
+
+      #about-us {
+        margin-bottom: 25px;
+        li a {
+          font-size: 1.2rem;
+        }
+      }
+      #social-media {
+        li ion-icon {
+          font-size: 1.8rem;
+        }
+      }
+    }
+    p {
+      margin-top: 45px;
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 8px;
+  }
+
+  #how-it-works {
+    #steps-flex {
+      #phone {
+        margin-right: 0;
+
+        img {
+          height: 250px;
+        }
+      }
+      #download-links {
+        img {
+          width: 40vw;
+        }
+      }
+    }
+  }
+
+  #cities {
+    #flexbox-cards {
+      .card {
+        h3 {
+          font-size: 2.2rem;
+        }
+        ul {
+          flex-direction: column;
+          align-self: center;
+          li,
+          a,
+          ion-icon {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  #contact-us {
+    form {
+      #submit {
+        width: 35%;
+        font-size: 1.3rem;
+        padding-left: 20px;
+      }
+    }
   }
 }

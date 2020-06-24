@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/styles.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,300italic" rel="stylesheet" type="text/css" />
@@ -13,17 +13,17 @@
   <header>
     <nav>
       <img src="resources/img/logo-white.png" alt="Omnifood logo" id="logo" />
-      <ul>
+      <ul id='menu-links'>
         <li><a href="#features">Food delivery</a></li>
-        <li><a href="#works">How it works</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
         <li><a href="#cities">Our cities</a></li>
         <li><a href="#plans">Sign up</a></li>
       </ul>
     </nav>
     <div id="hero-text-box">
       <h1>Goodbye junk food.<br />Hello super healthy meals.</h1>
-      <a class="btn btn-full" href="#">I'm hungry</a>
-      <a class="btn btn-ghost" href="#">Show me more</a>
+      <a class="btn btn-full" href="#plans">I'm hungry</a>
+      <a class="btn btn-ghost" href="#features">Show me more</a>
     </div>
   </header>
 
@@ -233,7 +233,7 @@
   <section id="plans">
     <h2>Start eating healthy today</h2>
     <div id='all-plans'>
-      <div class="plan-box">
+      <div class="plan-box" id='premium'>
         <div class='first'>
           <h3>Premium</h3>
           <p class="plan-price">$399 <span>/ month</span></p>
@@ -370,7 +370,9 @@
 
   <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-  <script src="./code.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="vendors/noframework.waypoints.min.js"></script>
+  <script src="resources/code.js"></script>
 </body>
 
 </html>
