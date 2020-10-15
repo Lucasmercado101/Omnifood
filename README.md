@@ -21,7 +21,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 lucasmercado101@gmail.com
 
-Project Link: https://github.com/Lucasmercado101/markdown-notes-app
+Project Link: https://github.com/Lucasmercado101/omnifood
 
 ## Acknowledgements
 * [Waypoints](https://imakewebthings.com/waypoints/)
